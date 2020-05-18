@@ -36,8 +36,9 @@ public class ClickHiddenObject : MonoBehaviour
 
         //FEEDBACK ON FOUND OBJECT
         Instantiate(SuccessfulClick, gameObject.GetComponent<Transform>().position, SuccessfulClick.rotation); // particle effect where the hidden object is
-        // Instantiate(SuccessfulClick, ObjectNameTextPos.position, SuccessfulClick.rotation); // particle effect where the text label is
-         // sound effect
+        Instantiate(SuccessfulClick, ObjectNameTextPos.position, SuccessfulClick.rotation); // particle effect where the text label is
+
+        gameObject.GetComponentInParent<AudioSource>().Play(); // sound effect
         
 
         // STRIKE FROM LIST
@@ -47,7 +48,6 @@ public class ClickHiddenObject : MonoBehaviour
         //REMOVE OBJECT 
         gameObject.SetActive(false);
         //Destroy(gameObject); // destroy the object once clicked
-        //Destroy(ObjectNameText); // destroy the associated UI object once clicked
 
     }
     

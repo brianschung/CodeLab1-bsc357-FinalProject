@@ -73,7 +73,9 @@ public class GameManager : MonoBehaviour
                 NumberOfClicks += 1; // add the final click
                 clicksChangingText.text = "Clicks: " + NumberOfClicks; // add the final click
                 endingPoolObject.GetComponent<FallingObjectField>().Invoke("SpawnObject", 0.5f); // call the function
-                endingSequenceBegun = true;
+                gameObject.GetComponent<AudioSource>().Play(); // plays the audio
+
+                endingSequenceBegun = true; // makes this ending sequence happen only once
 
             }
 
