@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI timeChangingText; // variable to hold component
     public GameObject timerText; // the timer ui GameObject
 
-    private int NumberOfClicks; // variable for the number of clicks
+    private int NumberOfClicks =0; // variable for the number of clicks
     private TextMeshProUGUI clicksChangingText; // variable to hold the clicks text component
     public GameObject clickText; // the clicks ui GameObject
 
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public List<string> foundObjects = new List<string>();
     private string[] hiddenObjects = { "Bug", "Mug", "PlantZZ", "TV" };
 
+    
 
     private void Awake()
     {
@@ -38,10 +39,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timeChangingText = timerText.GetComponent<TextMeshProUGUI>();
-        timer = 0;
-
         clicksChangingText = clickText.GetComponent<TextMeshProUGUI>();
-        NumberOfClicks = 0;
 
     }
 
@@ -63,6 +61,14 @@ public class GameManager : MonoBehaviour
         // PRESS R TO RESTART
         if (Input.GetKeyDown(KeyCode.R))
         {
+            timer = 0;
+            NumberOfClicks = 0;
+            clicksChangingText.text = "Clicks: " + NumberOfClicks; // function to set the text
+
+            foundObjects.Clear(); // need to empty the list
+
+            //gameObject.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal; // reset the UI text labels
+            
             print("game restarted!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
@@ -72,6 +78,8 @@ public class GameManager : MonoBehaviour
         if (IsGameOver())
         {
             Debug.Log("GAME OVER");
+
+
         }
 
     }

@@ -16,7 +16,8 @@ public class ClickHiddenObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SuccessfulClick = GameObject.FindObjectOfType<ParticleSystem>().transform; // set to the particle system
+
     }
 
     // Update is called once per frame
@@ -39,9 +40,13 @@ public class ClickHiddenObject : MonoBehaviour
          // sound effect
         
 
-        //REMOVE OBJECT / STRIKE FROM LIST
-        //Destroy(gameObject); // destroy the object once clicked
+        // STRIKE FROM LIST
+        
         ObjectNameText.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough; // strikethrough the UI text label
+
+        //REMOVE OBJECT 
+        gameObject.SetActive(false);
+        //Destroy(gameObject); // destroy the object once clicked
         //Destroy(ObjectNameText); // destroy the associated UI object once clicked
 
     }
