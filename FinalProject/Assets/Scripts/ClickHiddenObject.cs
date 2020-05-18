@@ -30,8 +30,8 @@ public class ClickHiddenObject : MonoBehaviour
     {
         //DATA MANAGEMENT
         NameOfObject = gameObject.name; // set the name of the object
-        Debug.Log(NameOfObject);
-        FindObjectOfType<GameManager>().FoundObject(NameOfObject);
+        //Debug.Log(NameOfObject);
+        FindObjectOfType<GameManager>().FoundObject(NameOfObject); // call the FoundObject function from the GameManager, letting it know which object this was
 
         //FEEDBACK ON FOUND OBJECT
         Instantiate(SuccessfulClick, gameObject.GetComponent<Transform>().position, SuccessfulClick.rotation); // particle effect where the hidden object is

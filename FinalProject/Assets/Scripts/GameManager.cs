@@ -69,8 +69,7 @@ public class GameManager : MonoBehaviour
         }
 
         // IS THE GAME OVER?
-
-        if (foundObjects.Count == hiddenObjects.Length)
+        if (IsGameOver())
         {
             Debug.Log("GAME OVER");
         }
