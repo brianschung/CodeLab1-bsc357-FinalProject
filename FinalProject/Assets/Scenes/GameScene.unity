@@ -947,6 +947,8 @@ MonoBehaviour:
   timerText: {fileID: 1170077229}
   clickText: {fileID: 1820858515}
   foundObjects: []
+  endingSequenceBegun: 0
+  endingPoolObject: {fileID: 2079624453}
 --- !u!1 &506844504
 GameObject:
   m_ObjectHideFlags: 0

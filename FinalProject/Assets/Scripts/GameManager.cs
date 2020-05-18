@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
     //LIST OF ALL HIDDEN OBJECTS
     public List<string> foundObjects = new List<string>();
     private string[] hiddenObjects = { "Bug", "Mug", "PlantZZ", "TV" };
-
     
+    public bool endingSequenceBegun = false; // for controlling the ending
+
+    public GameObject endingPoolObject;
 
     private void Awake()
     {
@@ -46,19 +48,41 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TIMER
-        timer += Time.deltaTime; // increase the timer by deltaTime every frame
-        timeChangingText.text = "Time: " + (int)timer; // set text component with the time (rounded)
-
-        // CLICKS
-        if (Input.GetMouseButtonDown(0)) // if the player clicks
+        // IF THE GAME IS NOT OVER
+        if (!IsGameOver())
         {
-            NumberOfClicks += 1; // increment the number of clicks
-            clicksChangingText.text = "Clicks: " + NumberOfClicks; // function to set the text
-            //Debug.Log("Clicks: " + NumberOfClicks);
+
+            // TIMER
+            timer += Time.deltaTime; // increase the timer by deltaTime every frame
+            timeChangingText.text = "Time: " + (int)timer; // set text component with the time (rounded)
+
+            // CLICKS
+            if (Input.GetMouseButtonDown(0)) // if the player clicks
+            {
+                NumberOfClicks += 1; // increment the number of clicks
+                clicksChangingText.text = "Clicks: " + NumberOfClicks; // function to set the text
+            }
         }
 
+        // IF THE GAME IS OVER
+        if (IsGameOver())
+        {
+            if (!endingSequenceBegun)
+            {
+                Debug.Log("CONGRATULATIONS!");
+                NumberOfClicks += 1; // add the final click
+                clicksChangingText.text = "Clicks: " + NumberOfClicks; // add the final click
+                endingPoolObject.GetComponent<FallingObjectField>().Invoke("SpawnObject", 0.5f); // call the function
+                endingSequenceBegun = true;
+
+            }
+
+        }
+
+
+
         // PRESS R TO RESTART
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             timer = 0;
@@ -68,19 +92,12 @@ public class GameManager : MonoBehaviour
             foundObjects.Clear(); // need to empty the list
 
             //gameObject.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal; // reset the UI text labels
-            
+
             print("game restarted!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
-
-        // IS THE GAME OVER?
-        if (IsGameOver())
-        {
-            Debug.Log("GAME OVER");
-
-
-        }
+        */
 
     }
 

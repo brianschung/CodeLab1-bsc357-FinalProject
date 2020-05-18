@@ -19,7 +19,7 @@ public abstract class ObjectPool : MonoBehaviour
         else
         {
             result = pool.Pop(); // get an object from the stack
-            print("Num Objects:  " + transform.childCount + " Pool Size: " + pool.Count);
+            //print("Objects:  " + transform.childCount + " Pool: " + pool.Count);
         }
 
         result.transform.parent = this.transform; // object becomes child of pool GameObject
